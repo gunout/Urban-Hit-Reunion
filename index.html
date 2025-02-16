@@ -86,6 +86,8 @@
             <button id="play" class="play">▶</button>
             <button id="pause" class="pause">⏸</button>
             <button id="stop" class="stop">■</button>
+            <button id="volumeUp">🔊 +</button>
+            <button id="volumeDown">🔉 -</button>
         </div>
     </div>
 
@@ -94,6 +96,8 @@
         const playButton = document.getElementById('play');
         const pauseButton = document.getElementById('pause');
         const stopButton = document.getElementById('stop');
+        const volumeUpButton = document.getElementById('volumeUp');
+        const volumeDownButton = document.getElementById('volumeDown');
 
         playButton.addEventListener('click', () => {
             audio.play();
@@ -106,6 +110,18 @@
         stopButton.addEventListener('click', () => {
             audio.pause();
             audio.currentTime = 0; // Réinitialiser la lecture
+        });
+
+        volumeUpButton.addEventListener('click', () => {
+            if (audio.volume < 1) {
+                audio.volume = Math.min(audio.volume + 0.1, 1); // Augmenter le volume
+            }
+        });
+
+        volumeDownButton.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.volume = Math.max(audio.volume - 0.1, 0); // Diminuer le volume
+            }
         });
     </script>
 </body>
